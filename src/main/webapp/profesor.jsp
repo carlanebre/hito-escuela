@@ -8,13 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.escuela.model.Alumno" %>
 <%@ page import="com.escuela.model.Calificacion" %>
-<%@ page import="com.escuela.model.Alumno" %>
-
 <%@ page import="java.util.List" %>
 
 <% String nombreUsuario = (String) session.getAttribute("nombreUsuario"); %>
 <% String rol = (String) session.getAttribute("rol"); %>
-
 <%-- Obtén el parámetro "alumno" de la URL --%>
 <% String nombreAlumno = request.getParameter("alumno"); %>
 
@@ -45,11 +42,13 @@
 
       <div class="flex-vertical-center">
         <div class="nav-group flex-vertical-center">
-          <p class="user-name"><% if (nombreUsuario != null) { %>
+          <p class="user-name">
+            <% if (nombreUsuario != null) { %>
             Bienvenido, <%= nombreUsuario %>
           <% } else { %>
           No se ha iniciado sesión como profesor
-            <% } %></p>
+            <% } %>
+          </p>
 
           <a href="profesor.jsp" class="btn-round">
             <span></span>
@@ -57,12 +56,9 @@
           </a>
         </div>
         <div class="col-md-3 text-end btns-custom">
-
           <form action="Logout" class="f-logout" method="post">
             <button type="submit" class="btn btn-outline-primary btn-negativo">Salir</button>
           </form>
-
-          </a>
         </div>
       </div>
     </header>
@@ -125,7 +121,6 @@
           <%= successMessage %>
         </div>
         <% } %>
-
       </div><!---add-notas-->
     </div><!--end of col-4-->
 
@@ -134,65 +129,55 @@
       <div class="ficha mb-5">
         <h3>Ficha de alumno</h3>
 
-        <%-- Obtiene el parámetro "alumno" de la URL --%>
-        <% String apellidoAlumno = ""; %>
-
-        <%-- Verifica si se ha seleccionado un alumno --%>
-        <% if (nombreAlumno != null) { %>
-        <%
-          // Busca al alumno por su nombre en la lista de alumnos
-          for (Alumno alumno : listaAlumnos) {
-            if (nombreAlumno.equals(alumno.getLogin())) {
-              apellidoAlumno = alumno.getApellido();
-              break; // Detén la búsqueda una vez que encuentres al alumno
+        <% // Obtiene el parámetro "alumno" de la URL
+          String apellidoAlumno = "";
+          // Verifica si se ha seleccionado un alumno
+          if (nombreAlumno != null) {
+            // Busca al alumno por su nombre en la lista de alumnos
+            for (Alumno alumno : listaAlumnos) {
+              if (nombreAlumno.equals(alumno.getLogin())) {
+                apellidoAlumno = alumno.getApellido();
+                break; // Detén la búsqueda una vez que encuentres al alumno
+              }
             }
           }
         %>
-        <% } %>
-
-        <%-- Muestra el nombre y el apellido del alumno si se ha seleccionado uno --%>
-        <% if (nombreAlumno != null) { %>
+        <% // Si el alumno no es nulo, muestra el nombre y apellido
+          if (nombreAlumno != null) {
+        %>
         <h2 class="ficha-name"><%= nombreAlumno + " " + apellidoAlumno %></h2>
-        <% } else { %>
-        <h2 class="ficha-message">Selecciona un alumno para mostrar su ficha</h2>
-        <% } %>
-
-        <%-- Obtiene el parámetro "alumno" de la URL --%>
         <%
-
-          // Busca al alumno por su nombre en la lista de alumnos
+        } else {
+        %>
+        <h2 class="ficha-message">Selecciona un alumno para mostrar su ficha</h2>
+        <%
+          }
+        %>
+        <% // Busca al alumno por su nombre en la lista de alumnos
           if (nombreAlumno != null) {
             for (Alumno alumno : listaAlumnos) {
               if (nombreAlumno.equals(alumno.getLogin())) {
                 apellidoAlumno = alumno.getApellido();
-                // Muestra las calificaciones del alumno
         %>
 
-        <table>
-          <tr>
-            <th>Asignatura</th>
-            <th>Nota</th>
-          </tr>
           <%
             if (alumno.getCalificaciones() != null && !alumno.getCalificaciones().isEmpty()) {
               for (Calificacion calificacion : alumno.getCalificaciones()) {
-          %>
-          <tr>
-            <td><%= calificacion.getAsignatura() %></td>
-            <td><%= calificacion.getNota() %></td>
-          </tr>
-          <%
+
             }
           } else {
           %>
-          <tr>
-            <td colspan="2">No hay calificaciones para este alumno.</td>
-          </tr>
+            <p>No hay calificaciones para este alumno.</p>
           <%
             }
           %>
-        </table>
 
+        <%
+                break; // Detén la búsqueda una vez que encuentres al alumno
+              }
+            }
+          }
+        %>
 
         <div class="list__container">
           <div class="list__shadow"></div>
@@ -205,6 +190,38 @@
                 <div class="list__cell">Fecha</div>
                 <div class="list__cell">Acción</div>
               </div><!--end of list__row-->
+
+              <%
+                // Busca al alumno por su nombre en la lista de alumnos
+                if (nombreAlumno != null) {
+                  for (Alumno alumno : listaAlumnos) {
+                    if (nombreAlumno.equals(alumno.getLogin())) {
+                      apellidoAlumno = alumno.getApellido();
+              %>
+
+              <%
+                if (alumno.getCalificaciones() != null && !alumno.getCalificaciones().isEmpty()) {
+                  for (Calificacion calificacion : alumno.getCalificaciones()) {
+              %>
+              <div class="list__row">
+                <div class="list__cell nowrap">
+                  <input class="form__checkbox" type="checkbox" id="checklist1">
+                  <label class="form__label" for="checklist4"></label>
+                </div>
+                <div class="list__cell"><%= calificacion.getAsignatura() %></div>
+                <div class="list__cell"><%= calificacion.getNota() %></div>
+                <div class="list__cell">28/03/19</div>
+                <div class="list__cell">
+                  <a href="#" class="list__icon" data-tooltip="Editar"><ion-icon name="pencil-sharp"></ion-icon></a>
+                  <a href="#" class="list__icon" data-tooltip="Ver detalle"><ion-icon name="eye"></ion-icon></a>
+                  <a href="#" target="_blank" class="list__icon" data-tooltip="Eliminar"><ion-icon name="trash"></ion-icon></a>
+                </div>
+              </div>
+              <%
+                }
+              }
+              %>
+
 
               <div class="list__row">
                 <div class="list__cell nowrap">
@@ -220,6 +237,11 @@
                   <a href="#" target="_blank" class="list__icon" data-tooltip="Eliminar"><ion-icon name="trash"></ion-icon></a>
                 </div>
               </div><!--end of list__row-->
+              <%
+                    }
+                  }
+                }
+              %>
             </div><!--end of list-->
           </div><!--end of wrapper-->
         </div><!--end of list__container-->
@@ -233,17 +255,10 @@
   <p class="">&copy; 2023</p>
 </div>
 
-<%
-        break; // Detén la búsqueda una vez que encuentres al alumno
-      }
-    }
-  }
-%>
-<% } %>
-
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="js/progress.js"></script>
 </body>
 </html>
+<% } %>
