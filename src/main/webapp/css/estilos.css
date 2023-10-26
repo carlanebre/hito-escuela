@@ -1,0 +1,741 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+@font-face {
+    font-family: Satoshi-Variable;
+    src: url(../fonts/Satoshi-Variable.woff2) format('woff2'), url(../fonts/Satoshi-Variable.woff) format('woff'), url(../fonts/Satoshi-Variable.ttf) format('truetype');
+    font-weight: 300 900;
+    font-display: swap;
+    font-style: normal;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.flex-vertical-center {
+    display: flex;
+    align-items: center;
+}
+
+.wrapper {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.wrapper-narrow {
+    flex: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    #custom .wrapper-narrow {
+        margin-top: -16px;
+    }
+}
+
+/* .header-custom .container {
+  max-width: 900px;
+} */
+
+.title-gestor {
+    font-family: Satoshi-Variable, sans-serif;
+    font-family: 'Rubik';
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 40px;
+}
+
+.nav-icon {
+    font-size: 30px;
+    position: absolute;
+    top: 25%;
+}
+
+.nav-icon:hover {
+    color: #0d6efd;
+    transition: all 0.7s;
+}
+
+@media (max-width: 991px) {
+    #custom .container-custom {
+        max-width: 950px;
+    }
+}
+
+/* =======================================================================
+BOTONES
+========================================================================== */
+
+.btn-outline-white {
+    color: #fff;
+    border-color: #fff;
+}
+
+.btn-outline-white:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: #0d6efd;
+}
+
+.btn {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    position: relative;
+    padding: 0;
+    display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 1px;
+    border: none;
+    outline: 0 !important;
+    white-space: nowrap;
+    vertical-align: top;
+    transition: 0.15s;
+    color: #4f87fb;
+}
+
+.btn span {
+    position: relative;
+    color: #fff;
+    display: block;
+    padding: 16px 32px;
+    min-width: 160px;
+    border-radius: 30px !important;
+    background: #4f87fb;
+    background: linear-gradient(135deg, #4f87fb 0%, #44d1ff 100%);
+    font-weight: 500;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+.btn:active:before {
+    opacity: 0.7;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0px 4px 8px 0px #4f87fb;
+}
+
+.btn-negativo {
+    padding: 8px 12px;
+    border: 2px solid #4f87fb;
+    border-radius: 20px !important;
+    min-width: 100px;
+    transition: all 0.7s;
+}
+
+.btn-negativo:hover {
+    background: linear-gradient(135deg, #4f87fb 0%, #4f87fb 100%);
+    border: 2px solid #4f87fb;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-link,
+.btn-link:before {
+    color: #44d1ff;
+}
+
+.btn-link:hover,
+.btn-link:hover:before {
+    color: #003744;
+}
+
+.btn--shadow-primary:before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    bottom: 4px;
+    left: 4px;
+    border-radius: 30px !important;
+    transition: 0.3s;
+    box-shadow: 0px 4px 8px 0px #4f87fb;
+}
+
+.btn--shadow-primary:hover:before {
+    box-shadow: 0px 4px 32px 0px #4f87fb;
+}
+
+.btn--block,
+.btns .btn {
+    width: 100%;
+    display: block;
+    margin-bottom: 24px;
+}
+
+.btns .btn:last-child {
+    margin-bottom: 0;
+}
+
+.btn-link {
+    text-decoration: none;
+}
+
+.rounded-button {
+    width: 30px; /* Ancho y alto iguales para hacerlo redondo */
+    height: 30px;
+    color: #f00;
+    background-color: transparent; /* Fondo transparente por defecto */
+    border: 2px solid #f00; /* Borde rojo por defecto */
+    border-radius: 50%; /* Borde circular para hacerlo redondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.7s; /* Transición para el cambio de color de fondo en hover */
+    margin-left: 8px;
+}
+
+.rounded-button:hover {
+    background-color: #f00; /* Cambio de color de fondo en hover a rojo */
+    border: 2px solid transparent; /* Borde transparente en hover */
+    cursor: pointer; /* Cambio del cursor al pasar el mouse sobre el botón */
+}
+
+.rounded-button ion-icon {
+    color: #f00; /* Color del icono */
+    font-size: 24px; /* Tamaño del icono */
+}
+
+.rounded-button ion-icon:hover {
+    color: #fff; /* Color del icono */
+    font-size: 24px; /* Tamaño del icono */
+}
+
+.add {
+    align-items: center;
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.add h3 {
+    margin: 0;
+}
+
+.add-notas {
+    max-width: 340px;
+}
+
+
+/* =======================================================================
+BTN PROFILE
+========================================================================== */
+
+.user-name {
+    margin: 0;
+    padding: 0px 12px;
+    font-family: Satoshi-Variable, sans-serif;
+    font-size: 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    vertical-align: top;
+    color: #4f87fb;
+}
+
+.nav-group {
+    height: 40px;
+    margin-right: 16px;
+}
+
+.nav-group span {
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+}
+
+.nav-user {
+    position: absolute;
+    top: 29%;
+    right: 29%;
+}
+
+.nav-pfp {
+    display: inline-block;
+    background-size: cover;
+    border-radius: 50%;
+    /*border: 1px solid white;*/
+    width: 40px;
+    height: 40px;
+}
+
+.btn-round {
+    position: relative;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    vertical-align: top;
+    transition: .15s;
+}
+
+.btn-round:last-child {
+    margin-left: 4px;
+}
+
+.btn-round:hover {
+    color: #4F87FB;
+    transition: 0.5s;
+}
+
+.btn-round span {
+    position: relative;
+    padding: 11px;
+    width: 40px;
+    display: inline-block;
+    background: #fff;
+    color: #4F87FB;
+    background-size: cover;
+    border-radius: 50% !important;
+}
+
+.btn-round:before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    bottom: 4px;
+    left: 4px;
+    border-radius: 30px !important;
+    transition: 0.3s;
+}
+
+.btn-round:before {
+    box-shadow: 0px 4px 8px 0px #4F87FB;
+}
+
+.btn-round-grey:before {
+    box-shadow: 0px 4px 8px 0px #666666;
+}
+
+.btn-round:hover:before {
+    box-shadow: 0px 4px 15px 0px #4F87FB;
+}
+
+/* =======================================================================
+NAV / ESTRUCTURAS
+========================================================================== */
+
+#custom .header-custom {
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+    position: relative;
+}
+
+#custom .nav-link:hover {
+    color: #0d6efd !important;
+}
+
+@media (min-width: 767px) {
+    #custom .btns-custom {
+        width: auto;
+    }
+}
+
+#login {
+    padding-top: 70px!important;
+}
+
+.container-usuario {
+    flex: 1;
+}
+
+.nav-group {
+    height: 40px;
+}
+
+.nav-group span {
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+}
+
+.col-custom {
+    min-height: 400px;
+}
+
+/* ==========================================================================
+   COLUMN BAR
+   ========================================================================== */
+
+.bar__courses {
+    display: none;
+}
+
+@media (min-width: 650px) {
+    .bar__courses {
+        display: inline-block;
+    }
+}
+
+@media (min-width: 650px) {
+    .column--bar {
+        margin-right: 32px;
+    }
+}
+
+.column--main {
+    flex: 1;
+    max-width: 850px;
+    margin-top: 30px;
+}
+
+@media (min-width: 650px) {
+    .column--main {
+        margin-right: 32px;
+        margin-top: 0;
+    }
+}
+
+.column--main h2 {
+    font-size: 20px;
+}
+
+.column--main h1:first-child {
+    margin-top: 0;
+}
+
+.title--big {
+    font-weight: 300;
+    font-size: 32px;
+}
+
+/* ==========================================================================
+LISTADO DE ALUMNOS
+========================================================================== */
+
+.bar {
+    background-color: #fbfbfb;
+    border: 1px solid #d3dce6;
+    border-radius: 6px;
+    padding: 0px 0px 8px;
+    width: 100%;
+}
+
+@media (min-width: 650px) {
+    .bar {
+        /*max-width: 231px;*/
+        background-color: #fbfbfb;
+        border: 1px solid #d3dce6;
+        border-radius: 6px;
+        padding: 0px 0px 8px;
+    }
+}
+
+.bar__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.bar__title {
+    padding: 8px 14px;
+    margin: 6px 0 0 0;
+}
+
+.bar__list__link {
+    padding: 6px 14px;
+    display: block;
+    text-decoration: none;
+}
+
+.bar__list__link:hover {
+    color: #4F87FB;
+    background: #CEDAFB;
+}
+
+/* ==========================================================================
+  FICHA DEL ALUMNO
+  ========================================================================== */
+
+.ficha {
+    background-color: #fbfbfb;
+    border: 1px solid #d3dce6;
+    border-radius: 6px;
+    padding: 16px;
+}
+
+.ficha-name {
+    font-weight: 300;
+    font-size: 32px;
+    font-family: Satoshi-Variable, sans-serif;
+}
+
+.ficha-message {
+    margin-top: 8px;
+    font-weight: 300;
+    font-size: 24px;
+    font-family: Satoshi-Variable, sans-serif;
+}
+
+.bar-profile .ficha-name {
+    margin: 20px 0 0 0;
+}
+
+.form-add {
+    max-width: 400px;
+}
+
+.profile-picture {
+    width: 170px;
+    height: 170px;
+    background-size: cover;
+    border-radius: 50%;
+    margin: 0 auto;
+    transition: 0.7s;
+}
+
+.profile-picture:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(67, 67, 67, 0.2); /* Cambiamos la sombra en hover */
+}
+
+.bar-profile {
+    padding: 14px;
+}
+
+/* =======================================================================
+FORM
+========================================================================== */
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    text-align: center;
+}
+
+.form-signin .h3 {
+    margin-bottom: 28px;
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type=text] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type=password] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-add .form-group {
+    margin-bottom: 12px;
+}
+
+.form-add label {
+    margin-bottom: 8px;
+}
+
+.form-add input {
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.f-logout {
+    margin:0;
+}
+
+.input-8 {
+    padding: 8px;
+}
+
+.input-16 {
+    padding: 16px;
+}
+
+.input-12 {
+    padding: 12px;
+}
+
+.input-login-group {
+    margin-bottom: 32px;
+}
+
+.text-group {
+    margin-bottom: 20px;
+}
+
+/* =======================================================================
+FOOTER
+========================================================================== */
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(79, 135, 251, 0.8) 0%, rgba(68, 209, 255, 0.8) 100%);
+    height: 100px;
+    text-align: center;
+    color: #0d6efd;
+    color: white;
+}
+
+.footer p {
+    margin: 2px;
+    font-size: 14px;
+}
+
+/* =======================================================================
+LIST
+========================================================================== */
+
+.list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+}
+
+.list--no-icons .list__row .list__cell {
+    padding: 23px;
+}
+
+.list--no-icons .list__row--header .list__cell {
+    padding: 0 0 8px 16px;
+    border-bottom: 0;
+}
+
+.list__container {
+    position: relative;
+    margin-top: 32px;
+}
+
+.list__shadow {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -99;
+    background: #fff;
+}
+
+.list__wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.list__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.list__row .list__cell:first-child {
+    flex: 0 0 50px; /* Ancho deseado para la primera columna */
+}
+
+.list__row--header {
+    color: #9b9b9b;
+    background: none;
+    box-shadow: none;
+}
+
+.list__row--header .list__cell {
+    padding: 0 16px 8px 0;
+    border-bottom: 0;
+}
+
+.list__row:nth-child(2) > *:first-child,
+.list__row:last-child > *:first-child {
+    border-radius: 6px 0 0 0;
+}
+
+.list__row:nth-child(2) > *:last-child,
+.list__row:last-child > *:last-child {
+    border-radius: 0 0 6px 0;
+}
+
+.list__row:hover {
+    background: #fafafa;
+}
+
+.list__cell {
+    flex: 1;
+    padding: 16px;
+}
+
+.list__cell:last-of-type {
+    white-space: nowrap;
+    display: flex;
+}
+
+.list__cell .form__checkbox + .form__label {
+    padding: 0;
+}
+
+.list__cell .form__checkbox + .form__label:before {
+    top: -3px;
+    border: 1px solid #4A4A4A;
+}
+
+.list__cell__link:hover {
+    color: #cc2519;
+}
+
+.list__icon {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    color: #000;
+    padding: 5px 11px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.list__icon[data-tooltip]:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    z-index: 199;
+    top: -20px;
+    left: 50%;
+    display: inline-block;
+    padding: 8px;
+    margin-top: 4px;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    font-family: "Circular Std Book", sans-serif;
+    background: rgba(0, 0, 0, .8);
+    color: #fff;
+    white-space: nowrap;
+    border-radius: 2px;
+    pointer-events: none;
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.list__icon:hover {
+    color: #4f87fb;
+    background: #F0F0F0;
+}
+
+.list__icon:hover:before {
+    opacity: 1;
+    transition-delay: 0.5s;
+}
