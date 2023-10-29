@@ -15,6 +15,17 @@
 <%-- Obtén el parámetro "alumno" de la URL --%>
 <% String nombreAlumno = request.getParameter("alumno"); %>
 
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+
+<% // Obtén la fecha actual
+  Date fechaActual = new Date();
+// Crea un objeto SimpleDateFormat para el formato deseado ("dd/MM/yy")
+  SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yy");
+// Formatea la fecha actual
+  String fechaFormateada = formatoFecha.format(fechaActual);
+%>
+
 <% if ("alumno".equals(rol)) { %> <!-- Si es alumno -->
 <jsp:include page="private.jsp" />
 <% } else if (rol == null) { %> <!-- Si no está iniciada sesión como nada -->
@@ -35,7 +46,7 @@
   <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-between py-3">
 
-      <a href="login.jsp" class="nav-link px-2 link-dark">
+      <a href="profesor.jsp" class="nav-link px-2 link-dark">
         <span class="nav-icon"><ion-icon name="school"></ion-icon></span>
         <span class="title-gestor">Gestor de calificaciones</span>
       </a>
@@ -145,7 +156,6 @@
         <% // Si el alumno no es nulo, muestra el nombre y apellido
           if (nombreAlumno != null) {
         %>
-        <h2 class="ficha-name"><%= nombreAlumno + " " + apellidoAlumno %></h2>
         <%
         } else {
         %>
@@ -167,7 +177,7 @@
             }
           } else {
           %>
-            <p>No hay calificaciones para este alumno.</p>
+
           <%
             }
           %>
@@ -179,10 +189,22 @@
           }
         %>
 
+        <%
+          boolean alumnoEncontrado = false;
+// Verifica si se ha seleccionado un alumno
+          if (nombreAlumno != null) {
+            for (Alumno alumno : listaAlumnos) {
+              if (nombreAlumno.equals(alumno.getLogin())) {
+                alumnoEncontrado = true;
+        %>
+        <h2 class="ficha-name"><%= nombreAlumno + " " + apellidoAlumno %></h2>
+        <%
+          if (alumno.getCalificaciones() != null && !alumno.getCalificaciones().isEmpty()) {
+        %>
         <div class="list__container">
           <div class="list__shadow"></div>
           <div class="list__wrapper">
-            <div class="list">
+            <div class="list list-profesor">
               <div class="list__row list__row--header">
                 <div class="list__cell"></div>
                 <div class="list__cell">Asignatura</div>
@@ -192,59 +214,45 @@
               </div><!--end of list__row-->
 
               <%
-                // Busca al alumno por su nombre en la lista de alumnos
-                if (nombreAlumno != null) {
-                  for (Alumno alumno : listaAlumnos) {
-                    if (nombreAlumno.equals(alumno.getLogin())) {
-                      apellidoAlumno = alumno.getApellido();
+                for (Calificacion calificacion : alumno.getCalificaciones()) {
               %>
 
-              <%
-                if (alumno.getCalificaciones() != null && !alumno.getCalificaciones().isEmpty()) {
-                  for (Calificacion calificacion : alumno.getCalificaciones()) {
-              %>
               <div class="list__row">
                 <div class="list__cell nowrap">
                   <input class="form__checkbox" type="checkbox" id="checklist1">
-                  <label class="form__label" for="checklist4"></label>
+                  <label class="form__label" for="checklist1"></label>
                 </div>
                 <div class="list__cell"><%= calificacion.getAsignatura() %></div>
                 <div class="list__cell"><%= calificacion.getNota() %></div>
-                <div class="list__cell">28/03/19</div>
+                <div class="list__cell"><%= fechaFormateada %></div>
                 <div class="list__cell">
-                  <a href="#" class="list__icon" data-tooltip="Editar"><ion-icon name="pencil-sharp"></ion-icon></a>
-                  <a href="#" class="list__icon" data-tooltip="Ver detalle"><ion-icon name="eye"></ion-icon></a>
-                  <a href="#" target="_blank" class="list__icon" data-tooltip="Eliminar"><ion-icon name="trash"></ion-icon></a>
+                  <a href="" class="list__icon" data-tooltip="Editar"><ion-icon name="pencil-sharp"></ion-icon></a>
+                  <a href="" class="list__icon" data-tooltip="Ver detalle"><ion-icon name="eye"></ion-icon></a>
+                  <a href="" class="list__icon" data-tooltip="Eliminar"><ion-icon name="trash"></ion-icon></a>
                 </div>
               </div>
               <%
-                }
-              }
-              %>
-
-
-              <div class="list__row">
-                <div class="list__cell nowrap">
-                  <input class="form__checkbox" type="checkbox" id="checklist4">
-                  <label class="form__label" for="checklist4"></label>
-                </div>
-                <div class="list__cell">Ciencias</div>
-                <div class="list__cell">9,5</div>
-                <div class="list__cell">28/03/19</div>
-                <div class="list__cell">
-                  <a href="#" class="list__icon" data-tooltip="Editar"><ion-icon name="pencil-sharp"></ion-icon></a>
-                  <a href="#" class="list__icon" data-tooltip="Ver detalle"><ion-icon name="eye"></ion-icon></a>
-                  <a href="#" target="_blank" class="list__icon" data-tooltip="Eliminar"><ion-icon name="trash"></ion-icon></a>
-                </div>
-              </div><!--end of list__row-->
-              <%
-                    }
-                  }
                 }
               %>
             </div><!--end of list-->
           </div><!--end of wrapper-->
         </div><!--end of list__container-->
+        <%
+        } else {
+        %>
+        <p>No hay calificaciones para este alumno.</p>
+        <%
+                }
+              }
+            }
+          }
+
+          if (!alumnoEncontrado) {
+        %>
+
+        <%
+          }
+        %>
       </div><!--end of ficha-->
     </div><!--end of col-8-->
   </div><!--end of row-->

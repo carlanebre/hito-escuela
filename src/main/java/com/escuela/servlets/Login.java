@@ -24,9 +24,9 @@ public class Login extends HttpServlet {
         escuela.nuevoProfesor("Amelia", "123", "Bases de datos, Entorno Servidor");
         escuela.nuevoProfesor("Pepe", "123", "Matemáticas, física");
         escuela.nuevoProfesor("Carmelo", "123", "Informática");
-        escuela.nuevoAlumno("Paula", "123", "Prendes");
+        escuela.nuevoAlumno("Paula", "123", "Cubero");
         escuela.nuevoAlumno("Mauro", "123","Marquez");
-        escuela.nuevoAlumno("Mariuska", "123", "Marín");
+        escuela.nuevoAlumno("Carlos", "123", "Merino");
         escuela.nuevoAlumno("Lucas", "123", "Pascal");
     }
 
@@ -54,6 +54,8 @@ public class Login extends HttpServlet {
 
             } else if (usuario instanceof Alumno) {
                 session.setAttribute("rol", "alumno");
+                session.setAttribute("apellidoUsuario", ((Alumno) usuario).getApellido());
+                session.setAttribute("alumno", usuario); // Almacena el objeto Alumno en la sesión
 
                 request.getRequestDispatcher("alumno.jsp").forward(request, response);
                 //response.sendRedirect("alumno.jsp"); // Redirigir a la página de alumno

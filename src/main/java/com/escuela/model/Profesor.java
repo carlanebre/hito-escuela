@@ -15,4 +15,10 @@ public class Profesor extends Usuario {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
+
+    @Override
+    public String toString() {
+        return getLogin(); // método que obtiene el nombre del profesor
+    }
+
 }

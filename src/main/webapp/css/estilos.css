@@ -643,9 +643,13 @@ LIST
     border-bottom: 1px solid #F0F0F0;
 }
 
-.list__row .list__cell:first-child {
-    flex: 0 0 50px; /* Ancho deseado para la primera columna */
+.list-profesor .list__row .list__cell:first-child {
+    flex: 0 0 50px;
 }
+
+/*.list-profesor .list__row .list__cell:nth-child(3) {
+    flex: 0 0 90px;
+}*/
 
 .list__row--header {
     color: #9b9b9b;
@@ -654,7 +658,13 @@ LIST
 }
 
 .list__row--header .list__cell {
-    padding: 0 16px 8px 0;
+    /*padding: 0 16px 8px 0;*/
+    padding: 0 16px 8px 16px;
+    border-bottom: 0;
+}
+
+.list__row--header2 .list__cell {
+    padding: 0 16px 8px 16px;
     border-bottom: 0;
 }
 
@@ -675,6 +685,7 @@ LIST
 .list__cell {
     flex: 7;
     padding: 16px;
+    /*padding: 16px 16px 16px 0;*/
 }
 
 .list__cell:last-of-type {
