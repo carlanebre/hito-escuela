@@ -20,6 +20,6 @@ public class Logout extends HttpServlet {
         session.invalidate();
 
         // Redirigir al usuario a la página de inicio de sesión
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("index.jsp");
     }
 }

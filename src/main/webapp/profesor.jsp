@@ -17,6 +17,7 @@
 
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.escuela.model.Escuela" %>
 
 <% // Obtén la fecha actual
   Date fechaActual = new Date();
@@ -85,7 +86,10 @@
           <h3 class="bar__title">Mis alumnos</h3>
           <ul class="bar__list">
             <%
-            List<Alumno> listaAlumnos = (List<Alumno>) session.getAttribute("alumnos");
+            ServletContext context = application.getContext("miEscuela");
+            Escuela escuela = (Escuela) application.getAttribute("miEscuela");
+
+            List<Alumno> listaAlumnos = escuela.getListaAlumnos();
             for (Alumno alumno : listaAlumnos) {
             %>
             <li class="bar__list__item">
@@ -226,9 +230,9 @@
                 <div class="list__cell"><%= calificacion.getNota() %></div>
                 <div class="list__cell"><%= fechaFormateada %></div>
                 <div class="list__cell">
-                  <a href="" class="list__icon" data-tooltip="Editar"><ion-icon name="pencil-sharp"></ion-icon></a>
-                  <a href="" class="list__icon" data-tooltip="Ver detalle"><ion-icon name="eye"></ion-icon></a>
-                  <a href="" class="list__icon" data-tooltip="Eliminar"><ion-icon name="trash"></ion-icon></a>
+                  <a href="#0" class="list__icon" data-tooltip="Editar"><ion-icon name="pencil-sharp"></ion-icon></a>
+                  <a href="#0" class="list__icon" data-tooltip="Ver detalle"><ion-icon name="eye"></ion-icon></a>
+                  <a href="#0" class="list__icon" data-tooltip="Eliminar"><ion-icon name="trash"></ion-icon></a>
                 </div>
               </div>
               <%

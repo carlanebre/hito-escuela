@@ -22,7 +22,11 @@ public class Calificar extends HttpServlet {
             Profesor profesor = (Profesor) usuario;
 
             // Obtén la lista de alumnos desde la sesión
-            List<Alumno> listaAlumnos = (List<Alumno>) request.getSession().getAttribute("alumnos");
+            // List<Alumno> listaAlumnos = (List<Alumno>) request.getSession().getAttribute("alumnos");
+
+            // Usar la lista de alumnos en este servlet
+            ServletContext context = getServletContext();
+            List<Alumno> listaAlumnos = (List<Alumno>) context.getAttribute("alumnos");
 
             for (Alumno alumno : listaAlumnos) {
                 if (alumno.getLogin().equals(nombreAlumno)) {

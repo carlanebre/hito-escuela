@@ -27,6 +27,10 @@
       height: 100vh;
     }
 
+    h1 {
+      margin-bottom: 20px;
+    }
+
     .mensaje {
       background-color: #fff;
       padding: 20px;
@@ -46,7 +50,7 @@
   <% if (session.getAttribute("nombreUsuario") == null) { %>
   <!-- Usuario no logueado -->
   <p>Estás intentando acceder a una zona privada.</p>
-  <p>Por favor, <a href="login.jsp">inicia sesión</a> como profesor o alumno.</p>
+  <p>Por favor, <a href="index.jsp">inicia sesión</a> como profesor o alumno.</p>
 
   <% } else if (session.getAttribute("rol").equals("profesor")) { %>
   <!-- Usuario logueado como profesor -->
@@ -55,11 +59,10 @@
 
   <% } else if (session.getAttribute("rol").equals("alumno")) { %>
   <!-- Usuario logueado como alumno -->
-  <p>Esta es una zona privada para profesores.</p>
   <p>Estás intentando acceder a una zona privada.</p>
-  <p>Si eres alumno, por favor <a href="login.jsp">vuelve atrás</a> o inicia sesión como profesor.</p>
+  <p>Si eres alumno, por favor <a href="index.jsp">vuelve atrás</a> o inicia sesión como profesor.</p>
   <% } %>
-  <p><a class="enlace" href="login.jsp">Volver al inicio</a></p>
+  <a href="index.jsp"><button type="button" class="btn btn-outline-primary btn-negativo mt-2">Volver a inicio</button></a>
 </div>
 </body>
 </html>

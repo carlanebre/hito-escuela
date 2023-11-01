@@ -28,6 +28,18 @@ public class Login extends HttpServlet {
         escuela.nuevoAlumno("Mauro", "123","Marquez");
         escuela.nuevoAlumno("Carlos", "123", "Merino");
         escuela.nuevoAlumno("Lucas", "123", "Pascal");
+
+        // Obtiene el contexto de la aplicación
+        ServletContext context = getServletContext();
+
+        // Obtén la lista de alumnos desde la instancia de Escuela
+        List<Alumno> listaAlumnos = escuela.getListaAlumnos();
+
+        // Almacena la instancia de Escuela en el contexto de la aplicación
+        context.setAttribute("miEscuela", escuela);
+
+        // Almacena la lista de alumnos en el contexto de la aplicación
+        context.setAttribute("alumnos", listaAlumnos);
     }
 
     @Override
@@ -47,8 +59,8 @@ public class Login extends HttpServlet {
                 session.setAttribute("rol", "profesor"); // Establecer el rol del usuario
 
                 // Obtener la lista de alumnos de la escuela
-                List<Alumno> listaAlumnos = escuela.getListaAlumnos();
-                session.setAttribute("alumnos", listaAlumnos);
+                // List<Alumno> listaAlumnos = escuela.getListaAlumnos();
+                // session.setAttribute("alumnos", listaAlumnos);
 
                 request.getRequestDispatcher("profesor.jsp").forward(request, response); // Reenvía a la página de profesor
 
@@ -67,10 +79,10 @@ public class Login extends HttpServlet {
                     "</div>";
             request.setAttribute("error", error);
 
-            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
 
-            //response.sendRedirect("login.jsp"); // Ajusta la dirección de la página de login
+            //response.sendRedirect("index.jsp"); // Ajusta la dirección de la página de login
         }
     }
 }
