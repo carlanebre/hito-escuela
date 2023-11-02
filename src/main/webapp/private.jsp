@@ -60,7 +60,7 @@
   <% } else if (session.getAttribute("rol").equals("alumno")) { %>
   <!-- Usuario logueado como alumno -->
   <p>Estás intentando acceder a una zona privada.</p>
-  <p>Si eres alumno, por favor <a href="index.jsp">vuelve atrás</a> o inicia sesión como profesor.</p>
+  <p>Si eres alumno, por favor <a href="alumno.jsp">vuelve atrás</a> o inicia sesión como profesor.</p>
   <% } %>
   <a href="index.jsp"><button type="button" class="btn btn-outline-primary btn-negativo mt-2">Volver a inicio</button></a>
 </div>
